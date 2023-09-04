@@ -17,6 +17,6 @@ On Linux/macOS:
 5. Clone the project (Or download the ZIP file and unpack it.):
 	git clone https://github.com/davidkakov111/My_Game.git
 6. Navigate to the project directory:
-	cd animal_invasion
+	cd My_Game/
 7. Run the game:
 	python ANIMAL_INVASION.py
