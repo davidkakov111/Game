@@ -15,7 +15,7 @@ On Linux/macOS:
 4. Install the Arcade module:
 	pip install arcade
 5. Clone the project (Or download the ZIP file and unpack it.):
-	git clone https://github.com/davidkakov111/animal_invasion.git
+	git clone https://github.com/davidkakov111/My_Game.git
 6. Navigate to the project directory:
 	cd animal_invasion
 7. Run the game:
