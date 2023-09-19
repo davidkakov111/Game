@@ -22,7 +22,7 @@ class GameWindow(arcade.Window):
         super().__init__(width, height, title)
         self.center_window()
 
-        # GameWindow vegyes adatai
+        # GameWindow datas
         if True:
             self.map = arcade.load_tilemap(map_file="GAME/untitled.tmj")
             self.ma = arcade.Scene.from_tilemap(self.map)
@@ -34,6 +34,7 @@ class GameWindow(arcade.Window):
             self.bo1ol = True
             self.bo1o1l = True
             self.b1o1ol = True
+            self.platfor = arcade.SpriteList()
             self.banyahang =  arcade.Sound("GAME/mining-with-pick-axe-in-a-group-29590.mp3")
             self.ba = self.banyahang.play(volume= 0.5, loop=True)
             self.deathsound = arcade.Sound("GAME/male-scream-in-fear-123079.mp3")
@@ -56,9 +57,8 @@ class GameWindow(arcade.Window):
             self.healthpoint = 100
             self.death = 0
 
-        # Pingvin adatok
+        # Pinguin datas
         if True:
-
             def pinguin (x, y):
                 self.pinguin1 = arcade.AnimatedTimeBasedSprite(filename="GAME/pinguin-removebg-preview.png",image_x=0,
                                                                image_y=0, image_height=80,
@@ -73,10 +73,9 @@ class GameWindow(arcade.Window):
             pinguin(18690, 105)
             pinguin(19040, 105)
 
-        # Banyasz adatok
+        # Miner datas
         if True:
             self.miners = arcade.SpriteList()
-
             def miners (x, y, flipped, time, time1):
                 self.miner = arcade.AnimatedTimeBasedSprite(filename="GAME/ba11.png", image_x=0, image_y=0,
                                                              image_height=80, image_width=71, center_x=x, center_y=y)
@@ -106,12 +105,11 @@ class GameWindow(arcade.Window):
                     self.miner.frames.append(arcade.AnimationKeyframe(tile_id=0, duration=time1, texture=texture10))
                 self.miners.append(self.miner)
 
-            miners(15925, 315, True, 1, 15)
-            miners(16135, 105, True, 4, 20)
-            miners(15505, 385, False, 3, 18)
-            miners(15225, 245, False, 2, 16)
+            self.miner_datas = [(15925, 315, True, 1, 15), (16135, 105, True, 4, 20), (15505, 385, False, 3, 18), (15225, 245, False, 2, 16)]
+            for a, b, c, d, e in self.miner_datas:
+                miners(a, b, c, d, e)
 
-        # Hal adatok
+        # Fish datas
         if True:
             self.halspeed1 = 3
             self.halspeed2 = 3
@@ -150,7 +148,7 @@ class GameWindow(arcade.Window):
             self.futohal2.center_y = 95
             self.futoallatok.append(self.futohal2)
 
-        # Orrszarvu adatok
+        # Rino datas
         if True:
             self.orrspeed1 = 4
             self.orrspeed2 = 4
@@ -203,7 +201,7 @@ class GameWindow(arcade.Window):
             self.futoorr2.center_y = 95
             self.futoallatok.append(self.futoorr2)
 
-        # Papagaj adatok
+        # Parrot datas
         if True:
             self.parrotspeed1 = 4
             self.parrotspeed2 = 4
@@ -242,7 +240,7 @@ class GameWindow(arcade.Window):
             self.futoparrot2.center_y = 500
             self.futoallatok.append(self.futoparrot2)
 
-        # Ka adatok (katona)
+        # Warrior datas
         if True:
             self.kaspeed1 = 3
             self.kaspeed2 = 3
@@ -281,7 +279,7 @@ class GameWindow(arcade.Window):
             self.futoka2.center_y = 125
             self.futoallatok.append(self.futoka2)
 
-        # Medve adatok
+        # Bear datas
         if True:
             self.medvespeed1 = 3
             self.medvespeed2 = 3
@@ -320,7 +318,7 @@ class GameWindow(arcade.Window):
             self.futomedve2.center_y = 105
             self.futoallatok.append(self.futomedve2)
 
-        # Sas adatok
+        # Eagle datas
         if True:
             self.sasspeed1 = 4
             self.sasspeed2 = 4
@@ -423,7 +421,7 @@ class GameWindow(arcade.Window):
             self.futosas4.center_y = 560
             self.futoallatok.append(self.futosas4)
 
-        # Diszno adatok
+        # Pig datas
         if True:
             self.pigspeed1 = 2
             self.pigspeed2 = 2
@@ -462,7 +460,7 @@ class GameWindow(arcade.Window):
             self.futopig2.center_y = 95
             self.futoallatok.append(self.futopig2)
 
-        # Tancolo tehen adatok
+        # Dancing polish cow datas :)
         if True:
             self.cows = arcade.SpriteList()
 
@@ -523,17 +521,12 @@ class GameWindow(arcade.Window):
                     self.cow1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=100, texture=texture1))
                 self.cows.append(sprite=self.cow1)
 
-            cow(20090, 110)
-            cow(20190, 110)
-            cow(20290, 110)
-            cow(20390, 110)
-            cow(20490, 110)
-            cow(20590, 110)
-            cow(20690, 110)
-            cow(20790, 110)
-            cow(20890, 110)
+            self.cow_datas = [(20090, 110), (20190, 110), (20290, 110), (20390, 110), (20490, 110),
+                               (20590, 110), (20690, 110), (20790, 110), (20890, 110)]
+            for x, y in self.cow_datas:
+                cow(x, y)
 
-        # Macska adatai
+        # Cat datas
         if True:
             self.macskaspeed1 = 4
 
@@ -561,9 +554,9 @@ class GameWindow(arcade.Window):
             self.futomacska1.center_y = 95
             self.futoallatok.append(self.futomacska1)
 
-        # Juhok adatai
+        # Sheep datas
         if True:
-            # Allo juhok
+            # Stand sheeps
             if True:
                 self.juhok = arcade.SpriteList()
                 self.juh1 = arcade.AnimatedTimeBasedSprite(filename="GAME/sheeps.png", image_x=0, image_y=0,
@@ -627,7 +620,7 @@ class GameWindow(arcade.Window):
                         texture4 = arcade.load_texture("GAME/sheeps.png", x=3 * 127.75, y=0, width=127.75, height=52)
                         self.juh4.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture4))
                 self.juhok.append(sprite=self.juh4)
-            # Futo juhok
+            # Running sheeps
             if True:
                 self.juhspeed1 = 4
                 self.juhspeed2 = 4
@@ -680,127 +673,71 @@ class GameWindow(arcade.Window):
                 self.futojuh2.center_y = 95
                 self.futoallatok.append(self.futojuh2)
 
-        # Geysir adatok
+        # Geysir datas
         if True:
             self.geysir = arcade.SpriteList()
-            self.geysir1 = arcade.AnimatedTimeBasedSprite(filename="GAME/1.png",image_x=0, image_y=0, image_height=456,
-                                                           image_width=210, center_x=1400, center_y=207)
-            for i in range(1):
-                texture1 = arcade.load_texture("GAME/1.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture1))
-            for i in range(1):
-                texture2 = arcade.load_texture("GAME/2.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture2))
-            for i in range(1):
-                texture3 = arcade.load_texture("GAME/3.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture3))
-            for i in range(1):
-                texture4 = arcade.load_texture("GAME/4.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture4))
-            for i in range(1):
-                texture5 = arcade.load_texture("GAME/5.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture5))
-            for i in range(1):
-                texture6 = arcade.load_texture("GAME/6.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture6))
-            for i in range(1):
-                texture7 = arcade.load_texture("GAME/7.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture7))
-            for i in range(1):
-                texture8 = arcade.load_texture("GAME/8.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture8))
-            for i in range(1):
-                texture9 = arcade.load_texture("GAME/9.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture9))
-            for i in range(1):
-                texture9 = arcade.load_texture("GAME/9.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture9))
-            for i in range(1):
-                texture8 = arcade.load_texture("GAME/8.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture8))
-            for i in range(1):
-                texture7 = arcade.load_texture("GAME/7.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture7))
-            for i in range(1):
-                texture6 = arcade.load_texture("GAME/6.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture6))
-            for i in range(1):
-                texture5 = arcade.load_texture("GAME/5.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture5))
-            for i in range(1):
-                texture4 = arcade.load_texture("GAME/4.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture4))
-            for i in range(1):
-                texture3 = arcade.load_texture("GAME/3.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture3))
-            for i in range(1):
-                texture2 = arcade.load_texture("GAME/2.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture2))
-            for i in range(1):
-                texture1 = arcade.load_texture("GAME/1.png", x= 0, y= 0, width=210, height=456)
-                self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture1))
-            self.geysir.append(self.geysir1)
+            def geysir (x, y):
+                self.geysir1 = arcade.AnimatedTimeBasedSprite(filename="GAME/1.png",image_x=0, image_y=0, image_height=456,
+                                                            image_width=210, center_x= x, center_y=y)
+                for i in range(1):
+                    texture1 = arcade.load_texture("GAME/1.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture1))
+                for i in range(1):
+                    texture2 = arcade.load_texture("GAME/2.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture2))
+                for i in range(1):
+                    texture3 = arcade.load_texture("GAME/3.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture3))
+                for i in range(1):
+                    texture4 = arcade.load_texture("GAME/4.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture4))
+                for i in range(1):
+                    texture5 = arcade.load_texture("GAME/5.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture5))
+                for i in range(1):
+                    texture6 = arcade.load_texture("GAME/6.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture6))
+                for i in range(1):
+                    texture7 = arcade.load_texture("GAME/7.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture7))
+                for i in range(1):
+                    texture8 = arcade.load_texture("GAME/8.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture8))
+                for i in range(1):
+                    texture9 = arcade.load_texture("GAME/9.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture9))
+                for i in range(1):
+                    texture9 = arcade.load_texture("GAME/9.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture9))
+                for i in range(1):
+                    texture8 = arcade.load_texture("GAME/8.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture8))
+                for i in range(1):
+                    texture7 = arcade.load_texture("GAME/7.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture7))
+                for i in range(1):
+                    texture6 = arcade.load_texture("GAME/6.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture6))
+                for i in range(1):
+                    texture5 = arcade.load_texture("GAME/5.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture5))
+                for i in range(1):
+                    texture4 = arcade.load_texture("GAME/4.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture4))
+                for i in range(1):
+                    texture3 = arcade.load_texture("GAME/3.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture3))
+                for i in range(1):
+                    texture2 = arcade.load_texture("GAME/2.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture2))
+                for i in range(1):
+                    texture1 = arcade.load_texture("GAME/1.png", x= 0, y= 0, width=210, height=456)
+                    self.geysir1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture1))
+                self.geysir.append(self.geysir1)
+            geysir(x=1400, y=207)
+            geysir(x=14140, y=247)
 
-
-            self.geysir2 = arcade.AnimatedTimeBasedSprite(filename="GAME/1.png", image_x=0, image_y=0, image_height=456,
-                                                          image_width=210, center_x=14140, center_y=247)
-            for i in range(1):
-                texture1 = arcade.load_texture("GAME/1.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture1))
-            for i in range(1):
-                texture2 = arcade.load_texture("GAME/2.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture2))
-            for i in range(1):
-                texture3 = arcade.load_texture("GAME/3.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture3))
-            for i in range(1):
-                texture4 = arcade.load_texture("GAME/4.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture4))
-            for i in range(1):
-                texture5 = arcade.load_texture("GAME/5.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture5))
-            for i in range(1):
-                texture6 = arcade.load_texture("GAME/6.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture6))
-            for i in range(1):
-                texture7 = arcade.load_texture("GAME/7.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture7))
-            for i in range(1):
-                texture8 = arcade.load_texture("GAME/8.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture8))
-            for i in range(1):
-                texture9 = arcade.load_texture("GAME/9.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture9))
-            for i in range(1):
-                texture9 = arcade.load_texture("GAME/9.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture9))
-            for i in range(1):
-                texture8 = arcade.load_texture("GAME/8.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture8))
-            for i in range(1):
-                texture7 = arcade.load_texture("GAME/7.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture7))
-            for i in range(1):
-                texture6 = arcade.load_texture("GAME/6.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture6))
-            for i in range(1):
-                texture5 = arcade.load_texture("GAME/5.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture5))
-            for i in range(1):
-                texture4 = arcade.load_texture("GAME/4.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture4))
-            for i in range(1):
-                texture3 = arcade.load_texture("GAME/3.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture3))
-            for i in range(1):
-                texture2 = arcade.load_texture("GAME/2.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture2))
-            for i in range(1):
-                texture1 = arcade.load_texture("GAME/1.png", x=0, y=0, width=210, height=456)
-                self.geysir2.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture1))
-            self.geysir.append(self.geysir2)
-
-        # Lift adatok
+        # Lift datas
         if True:
             self.lift = arcade.SpriteList()
             self.liftspeed1 = 2
@@ -821,13 +758,11 @@ class GameWindow(arcade.Window):
             self.lift5 = arcade.Sprite("GAME/lekerekitett ko2.png", image_x=0, image_y=0, image_width=70,
                                        image_height=70,
                                        center_x=18025, center_y=460)
-            self.lift.append(self.lift1)
-            self.lift.append(self.lift3)
-            self.lift.append(self.lift2)
-            self.lift.append(self.lift4)
-            self.lift.append(self.lift5)
+            self.lif = [self.lift1, self.lift2, self.lift3, self.lift4, self.lift5]
+            for i in self.lif:
+                self.lift.append(i)
 
-        # Bitcoinok adatai
+        # Bitcoin datas
         if True:
             self.bitcoins = arcade.SpriteList()
 
@@ -844,35 +779,19 @@ class GameWindow(arcade.Window):
                     self.bitcoin1.frames.append(arcade.AnimationKeyframe(tile_id=i, duration=40, texture=texture2))
                 self.bitcoins.append(sprite=self.bitcoin1)
 
-            bitcoin(175, 580)
-            bitcoin(3150, 440)
-            bitcoin(1650, 376)
-            bitcoin(4095, 95)
-            bitcoin(5150, 95)
-            bitcoin(6420, 585)
-            bitcoin(7940, 372)
-            bitcoin(8785, 95)
-            bitcoin(12145, 448)
-            bitcoin(14140, 445)
-            bitcoin(17745, 515)
-            bitcoin(18760, 365)
-            bitcoin(20580, 375)
-            bitcoin(20650, 375)
-            bitcoin(15820, 375)
-            bitcoin(20720, 375)
-            bitcoin(20510, 375)
-            bitcoin(20440, 375)
-            bitcoin(20170, 375)
-            bitcoin(20090, 375)
+            self.datas = [(175, 580), (3150, 440), (1650, 376), (4095, 95), (5150, 95), (6420, 585), (7940, 372), (8785, 95), (12145, 448), (14140, 445),
+                     (17745, 515), (18760, 365), (20580, 375), (20650, 375), (15820, 375), (20720, 375), (20510, 375), (20440, 375), (20170, 375), (20090, 375)]
 
-        # Karakterem adatai
+            for x, y in self.datas:
+                bitcoin(x, y)
+
+        # My caracter datas
         if True:
             self.katona = arcade.AnimatedWalkingSprite()
             self.katona.stand_left_textures.append(
                 arcade.load_texture("GAME/Walk1.png", x=8*63.44, y=0, width=63.44, height=80))
             self.katona.stand_right_textures.append(
                 arcade.load_texture("GAME/Walk1.png", x=8*63.44, y=0, width=63.44, height=80, flipped_horizontally=True))
-
             for i in range(9):
                 texture = arcade.load_texture("GAME/Walk1.png", x=i * 63.44, y=0, width=63.44, height=80)
                 self.katona.walk_left_textures.append(texture)
@@ -890,25 +809,22 @@ class GameWindow(arcade.Window):
             self.katona.center_x = 100
             self.katona.center_y = 170
 
-        self.physics = arcade.PhysicsEnginePlatformer(self.katona, self.ma["talaj"], gravity_constant=GRAVITY)
-        self.physics1 = arcade.PhysicsEnginePlatformer(self.katona, platforms=self.lift)
+        self.platfor.extend(self.ma["talaj"])
+        self.platfor.extend(self.lift)
+        self.physics = arcade.PhysicsEnginePlatformer(
+            player_sprite = self.katona,
+            platforms = self.platfor,
+            gravity_constant = GRAVITY
+        )
 
     def on_draw(self):
         arcade.start_render()
-        self.ma.draw()
-        self.geysir.draw()
-        self.congrat.draw()
-        self.congrat1.draw()
-        self.lift.draw()
-        self.miners.draw()
-        self.bitcoins.draw()
-        self.juhok.draw()
-        self.futoallatok.draw()
-        self.cows.draw()
-        self.pasztor.draw()
-        self.katona.draw()
-        self.firehydrant.draw()
-        self.firehydrant1.draw()
+
+        drawing = [self.ma, self.geysir, self.congrat, self.congrat1, self.lift, self.miners, self.bitcoins, self.juhok, 
+                   self.futoallatok, self.cows, self.pasztor, self.katona, self.firehydrant, self.firehydrant1]
+        for i in drawing: 
+            i.draw()
+
         arcade.draw_text(f"         x {self.collected}", arcade.get_viewport()[0], 650, arcade.color.GOLD,
                          font_size=20)
         arcade.draw_text("  ₿", arcade.get_viewport()[0], 640, arcade.color.GOLD,
@@ -919,21 +835,51 @@ class GameWindow(arcade.Window):
                          font_size=20)
 
     def on_update(self, delta_time: float):
-        # def on_update vegyes frissitesek
-        if True:
-            self.physics.update()
-            self.katona.update()
-            self.katona.update_animation()
-            self.physics1.update()
-            self.bitcoins.update_animation()
-            self.geysir.update_animation()
-            self.miners.update_animation()
-            self.juhok.update_animation()
-            self.futoallatok.update_animation()
-            self.futoallatok.update()
-            self.cows.update_animation()
+        updte = [self.physics, self.futoallatok, self.katona]
+        for i in updte:
+            i.update()
 
-        # Banya hang
+        upanim = [self.bitcoins, self.geysir, self.miners, self.juhok, self.futoallatok, self.cows, self.katona]
+        for i in upanim:
+            i.update_animation()
+
+        #Death
+        if True:
+            def deat():
+                if self.healthpoint < 0.000001:
+                    self.deathsound.play(volume=1)
+                    self.death += 1
+                    self.katona.center_x = 100
+                    self.katona.center_y = 125
+                    self.healthpoint = 100
+                    if self.katona.center_x < 700:
+                        change_view2 = True
+                    else:
+                        change_view2 = False
+                    if change_view2:  # left, right, bottom, top
+                        arcade.set_viewport(0,
+                                            WINDOW_WIDTH,
+                                            0,
+                                            WINDOW_HEIGHT)
+            deat()
+
+        # Lava
+        if True:
+            if arcade.check_for_collision_with_list(self.katona, self.ma["lava"]):
+                self.healthpoint = 0
+
+        # Damage
+        if True:
+            if arcade.check_for_collision_with_list(self.katona, self.futoallatok):
+                if self.b1o1ol:
+                    if self.healthpoint > 25:
+                        self.damagesound.play(volume=3)
+                    self.healthpoint -=25
+                    self.b1o1ol = False
+            else:
+                self.b1o1ol = True
+        
+        # Mine sound
         if True:
             if 14770 < self.katona.center_x < 16800:
                 if self.b11ool:
@@ -943,51 +889,7 @@ class GameWindow(arcade.Window):
                 self.b11ool = True
                 self.banyahang.stop(self.ba)
 
-        # Lava
-        if True:
-            if arcade.check_for_collision_with_list(self.katona, self.ma["lava"]):
-                self.healthpoint = 0
-            if self.healthpoint < 0.000001:
-                self.deathsound.play(volume=1)
-                self.death += 1
-                self.katona.center_x = 100
-                self.healthpoint = 100
-                if self.katona.center_x < 700:
-                    change_view2 = True
-                else:
-                    change_view2 = False
-                if change_view2:  # left, right, bottom, top
-                    arcade.set_viewport(0,
-                                        WINDOW_WIDTH,
-                                        0,
-                                        WINDOW_HEIGHT)
-
-        # Kill and damage
-        if True:
-            if arcade.check_for_collision_with_list(self.katona, self.futoallatok):
-                if self.b1o1ol:
-                    if self.healthpoint > 25:
-                        self.damagesound.play(volume=3)
-                    self.healthpoint -=25
-                    self.b1o1ol = False
-                    if self.healthpoint < 0.000001:
-                        self.deathsound.play(volume=1)
-                        self.death += 1
-                        self.katona.center_x = 100
-                        self.healthpoint = 100
-                        if self.katona.center_x < 700:
-                            change_view2 = True
-                        else:
-                            change_view2 = False
-                        if change_view2:  # left, right, bottom, top
-                            arcade.set_viewport(0,
-                                                WINDOW_WIDTH,
-                                                0,
-                                                WINDOW_HEIGHT)
-            else:
-                self.b1o1ol = True
-
-        # Hal usztatas
+        # Fish swim
         if True:
             if self.futohal1.center_x < 13730:
                 self.halspeed1 *= -1
@@ -1000,7 +902,7 @@ class GameWindow(arcade.Window):
                 self.halspeed2 *= -1
             self.futohal2.change_x = self.halspeed2
 
-        # Orrszarvu futtatas
+        # Rino run
         if True:
             if self.futoorr1.center_x < 10500:
                 self.orrspeed1 *= -1
@@ -1014,7 +916,7 @@ class GameWindow(arcade.Window):
                 self.orrspeed2 *= -1
             self.futoorr2.change_x = self.orrspeed2
 
-        # papagaly reptetes
+        # Parrot fly
         if True:
             if self.futoparrot1.center_x < 10500:
                 self.parrotspeed1 *= -1
@@ -1027,7 +929,7 @@ class GameWindow(arcade.Window):
                 self.parrotspeed2 *= -1
             self.futoparrot2.change_x = self.parrotspeed2
 
-        # ka futtatas
+        # Warrior run
         if True:
             if self.futoka1.center_x < 8750:
                 self.kaspeed1 *= -1
@@ -1041,7 +943,7 @@ class GameWindow(arcade.Window):
                 self.kaspeed2 *= -1
             self.futoka2.change_x = self.kaspeed2
 
-        # Medve futtatas
+        # Bear run
         if True:
             if self.futomedve1.center_x < 6720:
                 self.medvespeed1 *= -1
@@ -1055,7 +957,7 @@ class GameWindow(arcade.Window):
                 self.medvespeed2 *= -1
             self.futomedve2.change_x = self.medvespeed2
 
-        # Sas reptetes
+        # Eagle fly
         if True:
             if self.futosas1.center_x < 700:
                 self.sasspeed1 *= -1
@@ -1078,14 +980,13 @@ class GameWindow(arcade.Window):
                 self.sasspeed4 *= -1
             self.futosas4.change_x = self.sasspeed4
 
-        # Diszno futtatas
+        # Pig run
         if True:
             if self.futopig1.center_x < 2170:
                 self.pigspeed1 *= -1
             if self.futopig1.center_x > 2870:
                 self.pigspeed1 *= -1
             self.futopig1.change_x = self.pigspeed1
-
             if self.futopig2.center_x < 2170:
                 self.pigspeed2 *= -1
             if self.futopig2.center_x > 2870:
@@ -1104,7 +1005,7 @@ class GameWindow(arcade.Window):
                 self.music.set_volume(0.8, player=self.player)
                 self.soundcow.stop(self.cow)
 
-        # Macska futtatas
+        # Cat run
         if True:
             if self.futomacska1.center_x < 3805:
                 self.macskaspeed1 *= -1
@@ -1112,7 +1013,7 @@ class GameWindow(arcade.Window):
                 self.macskaspeed1 *= -1
             self.futomacska1.change_x = self.macskaspeed1
 
-        # Juh futtatas es hang
+        # Sheep run with sound
         if True:
             if self.katona.center_x < 1750:
                 if self.bo1ol:
@@ -1132,7 +1033,7 @@ class GameWindow(arcade.Window):
                 self.juhspeed2 *= -1
             self.futojuh2.change_x = self.juhspeed2
 
-        # Geysir hozzarendelesek
+        # Geysir...
         if True:
             if arcade.check_for_collision_with_list(self.katona, self.geysir):
                 self.physics.gravity_constant = False
@@ -1144,7 +1045,7 @@ class GameWindow(arcade.Window):
                 self.physics.gravity_constant = GRAVITY
                 self.boo1l = True
 
-        # Lift mozgatas adatok
+        # Lift movement
         if True:
             if self.lift1.center_y > 460:
                 self.liftspeed1 *= -1
@@ -1176,7 +1077,7 @@ class GameWindow(arcade.Window):
                 self.liftspeed5 *= -1
             self.lift5.center_y += self.liftspeed5
 
-        # A mozgastere es nezetkovetese a karakteremnek
+        # Main caracter view
         if True:
             if WINDOW_HALF_WIDTH < self.katona.center_x < MAP_WIDTH - WINDOW_HALF_WIDTH:
                 change_view = True
@@ -1189,7 +1090,7 @@ class GameWindow(arcade.Window):
                                     WINDOW_HEIGHT)
             self.katona.center_x = clamp1(self.katona.center_x, 25, MAP_WIDTH - 25)
 
-        # Viz locsogas hang
+        # Water sound
         if True:
             if arcade.check_for_collision_with_list(self.katona, self.ma["viz"]):
                 if self.bool:
@@ -1198,7 +1099,7 @@ class GameWindow(arcade.Window):
             else:
                 self.bool= True
 
-        # Bitcoin felvevo hang
+        # Bitcoin sound
         if True:
             collected = arcade.check_for_collision_with_list(self.katona, self.bitcoins)
             for i in collected:
@@ -1242,4 +1143,3 @@ class GameWindow(arcade.Window):
 
 GameWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "ANIMAL INVASION")
 arcade.run()
-
